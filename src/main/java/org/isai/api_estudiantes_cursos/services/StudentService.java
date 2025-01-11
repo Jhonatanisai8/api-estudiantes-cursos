@@ -35,4 +35,11 @@ public class StudentService {
                 });
         return repository.save(student);
     }
+
+    public Student deleteStudentByID(Long idStudent) {
+        Student student = getStudentByID(idStudent);
+        repository.delete(student);
+        return student;
+    }
+
 }
