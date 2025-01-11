@@ -2,6 +2,7 @@ package org.isai.api_estudiantes_cursos.services;
 
 import java.util.List;
 
+import org.isai.api_estudiantes_cursos.exceptiones.EmptyDataException;
 import org.isai.api_estudiantes_cursos.exceptiones.StudentExistingException;
 import org.isai.api_estudiantes_cursos.exceptiones.StudentNotFoundException;
 import org.isai.api_estudiantes_cursos.models.Student;
@@ -42,4 +43,23 @@ public class StudentService {
         return student;
     }
 
+    public Student updateStudentByID(Long idStudent, Student student) {
+        Student studentToUpdate = getStudentByID(idStudent);
+        if (student.getEdad() != null || student.getEdad() >= 0) {
+            studentToUpdate.setName(student.getName());
+        } else {
+            throw new EmptyDataException(student.getEdad());
+        }
+        if (student.getEmail() != null || !student.getEmail().isBlank()) {
+            studentToUpdate.setEmail(student.getEmail());
+        } else {
+            throw new EmptyDataException(student.getEmail());
+        }
+        if (student.getName() != null || !student.getName().isBlank()) {
+            studentToUpdate.setName(student.getName());
+        } else {
+            throw new EmptyDataException(student.getName());
+        }
+        return repository.save(studentToUpdate);
+    }
 }
