@@ -59,6 +59,6 @@ public class StudentService {
         } else {
             throw new EmptyDataException(student.getName());
         }
-        return saveStudent(studentToUpdate);
+        return repository.save(studentToUpdate);
     }
 }
