@@ -7,7 +7,9 @@ import org.isai.api_estudiantes_cursos.exceptiones.StudentExistingException;
 import org.isai.api_estudiantes_cursos.models.Student;
 import org.isai.api_estudiantes_cursos.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,5 +65,18 @@ public class StudentController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteStudentById(@PathVariable Long id) {
+        try {
+            Student student = service.deleteStudentByID(id);
+            return ResponseEntity
+                    .ok()
+                    .body(student);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
 
 }
