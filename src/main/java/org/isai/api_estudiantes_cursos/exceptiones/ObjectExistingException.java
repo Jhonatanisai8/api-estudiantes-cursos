@@ -2,9 +2,9 @@ package org.isai.api_estudiantes_cursos.exceptiones;
 
 import jakarta.persistence.EntityExistsException;
 
-public class StudentExistingException
+public class ObjectExistingException
         extends EntityExistsException {
-    public StudentExistingException(String name) {
-        super("Student with id " + name + " already exists.");
+    public ObjectExistingException(String name) {
+        super("Object with name " + name + " already exists.");
     }
 }

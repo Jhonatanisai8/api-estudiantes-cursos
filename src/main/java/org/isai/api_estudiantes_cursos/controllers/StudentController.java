@@ -3,7 +3,7 @@ package org.isai.api_estudiantes_cursos.controllers;
 import java.net.URI;
 import java.util.List;
 
-import org.isai.api_estudiantes_cursos.exceptiones.StudentExistingException;
+import org.isai.api_estudiantes_cursos.exceptiones.ObjectExistingException;
 import org.isai.api_estudiantes_cursos.models.Student;
 import org.isai.api_estudiantes_cursos.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class StudentController {
             return ResponseEntity
                     .created(locacion)
                     .body(student);
-        } catch (StudentExistingException e) {
+        } catch (ObjectExistingException e) {
             return ResponseEntity
                     .badRequest()
                     .body(e.getMessage());

@@ -3,7 +3,7 @@ package org.isai.api_estudiantes_cursos.services;
 import java.util.List;
 
 import org.isai.api_estudiantes_cursos.exceptiones.EmptyDataException;
-import org.isai.api_estudiantes_cursos.exceptiones.StudentExistingException;
+import org.isai.api_estudiantes_cursos.exceptiones.ObjectExistingException;
 import org.isai.api_estudiantes_cursos.exceptiones.StudentNotFoundException;
 import org.isai.api_estudiantes_cursos.models.Student;
 import org.isai.api_estudiantes_cursos.repository.StudentRepository;
@@ -31,7 +31,7 @@ public class StudentService {
                 .stream()
                 .anyMatch(existingStudent -> existingStudent.getName().equals(student.getName()));
         if (studenExist) {
-            throw new StudentExistingException(student.getName());
+            throw new ObjectExistingException(student.getName());
         }
         return repository.save(student);
     }
