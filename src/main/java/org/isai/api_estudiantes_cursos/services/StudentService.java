@@ -60,6 +60,6 @@ public class StudentService {
         } else {
             throw new EmptyDataException(student.getName());
         }
-        return repository.save(studentToUpdate);
+        return saveStudent(studentToUpdate);
     }
 }
