@@ -22,8 +22,8 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_course")
-    private Long idCource;
+    @Column(name = "course_id")
+    private Long idCourse;
 
     @NotNull
     private String name;
@@ -41,20 +41,19 @@ public class Course {
     private Teacher teacher;
 
     @ManyToMany
-    @JoinTable(name = "students_courses", 
-    joinColumns = @JoinColumn(name = "cource_id", referencedColumnName = "cource_id"), inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"))
+    @JoinTable(name = "students_courses", joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id"), inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"))
     private List<Student> students;
 
     public List<Student> getStudents() {
         return students;
     }
 
-    public Long getIdCource() {
-        return idCource;
+    public Long getIdCourse() {
+        return idCourse;
     }
 
-    public void setIdCource(Long idCource) {
-        this.idCource = idCource;
+    public void setIdCourse(Long idCourse) {
+        this.idCourse = idCourse;
     }
 
     public String getName() {
