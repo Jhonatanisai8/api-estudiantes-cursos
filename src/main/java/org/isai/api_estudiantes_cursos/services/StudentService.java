@@ -27,13 +27,12 @@ public class StudentService {
     }
 
     public Student saveStudent(Student student) {
-        getStudents()
+        boolean studenExist = getStudents()
                 .stream()
-                .filter(studentWanted -> studentWanted.equals(student))
-                .findFirst()
-                .ifPresent(studentWanted -> {
-                    throw new StudentExistingException(studentWanted.getName());
-                });
+                .anyMatch(existingStudent -> existingStudent.getName().equals(student.getName()));
+        if (studenExist) {
+            throw new StudentExistingException(student.getName());
+        }
         return repository.save(student);
     }
 
