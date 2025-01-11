@@ -2,6 +2,7 @@ package org.isai.api_estudiantes_cursos.services;
 
 import java.util.List;
 
+import org.isai.api_estudiantes_cursos.exceptiones.StudentExistingException;
 import org.isai.api_estudiantes_cursos.exceptiones.StudentNotFoundException;
 import org.isai.api_estudiantes_cursos.models.Student;
 import org.isai.api_estudiantes_cursos.repository.StudentRepository;
@@ -24,4 +25,14 @@ public class StudentService {
         return (List<Student>) repository.findAll();
     }
 
+    public Student saveStudent(Student student) {
+        getStudents()
+                .stream()
+                .filter(studentWanted -> studentWanted.equals(student))
+                .findFirst()
+                .ifPresent(studentWanted -> {
+                    throw new StudentExistingException(studentWanted.getName());
+                });
+        return repository.save(student);
+    }
 }
