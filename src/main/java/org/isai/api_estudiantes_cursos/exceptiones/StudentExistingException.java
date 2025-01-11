@@ -4,7 +4,7 @@ import jakarta.persistence.EntityExistsException;
 
 public class StudentExistingException
         extends EntityExistsException {
-    public StudentExistingException(Long id) {
-        super("Student with id " + id + " already exists.");
+    public StudentExistingException(String name) {
+        super("Student with id " + name + " already exists.");
     }
 }
