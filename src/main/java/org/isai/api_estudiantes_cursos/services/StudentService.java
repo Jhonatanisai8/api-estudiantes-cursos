@@ -1,5 +1,7 @@
 package org.isai.api_estudiantes_cursos.services;
 
+import java.util.List;
+
 import org.isai.api_estudiantes_cursos.exceptiones.StudentNotFoundException;
 import org.isai.api_estudiantes_cursos.models.Student;
 import org.isai.api_estudiantes_cursos.repository.StudentRepository;
@@ -16,6 +18,10 @@ public class StudentService {
         return repository
                 .findById(idStudent)
                 .orElseThrow(() -> new StudentNotFoundException(idStudent));
+    }
+
+    public List<Student> getStudents() {
+        return (List<Student>) repository.findAll();
     }
 
 }
