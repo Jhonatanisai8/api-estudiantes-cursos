@@ -12,7 +12,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_student", nullable = false)
+    @Column(name = "student_id", nullable = false)
     private Long idStudent;
 
     @NotNull
@@ -26,7 +26,7 @@ public class Student {
 
     @ManyToMany
     @JsonBackReference
-    @JoinTable(name = "students_cources", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"), inverseJoinColumns = @JoinColumn(name = "cource_id", referencedColumnName = "cource_id"))
+    @JoinTable(name = "students_courses", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id"))
     private List<Course> courses;
 
     public Long getIdStudent() {
